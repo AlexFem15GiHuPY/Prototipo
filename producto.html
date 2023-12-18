@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Producto</title>
+</head>
+<body>
+
+    <h1>{{ producto.nombre }}</h1>
+    <img src="{{ url_for('static', filename='images/' + producto.imagen) }}" alt="{{ producto.nombre }}">
+    <p>{{ producto.descripcion }}</p>
+    <p>Precio: ${{ producto.precio }}</p>
+
+    <!-- Formulario de compra -->
+    <form method="post" action="{{ url_for('producto_confirmacion') }}">
+        <label for="nombre">Nombre Completo:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+
+        <label for="telefono">Número telefónico:</label>
+        <input type="text" id="telefono" name="telefono" required><br>
+
+        <label for="metodo_pago">Método de Pago:</label>
+        <select id="metodo_pago" name="metodo_pago" required>
+            <option value="tarjeta">Tarjeta de Crédito</option>
+            <option value="paypal">PayPal</option>
+        </select><br>
+
+        <label for="descripcion">Breve Descripción:</label>
+        <textarea id="descripcion" name="descripcion" rows="4" required></textarea><br>
+
+        <button type="submit">Comprar</button>
+    </form>
+
+</body>
+</html>

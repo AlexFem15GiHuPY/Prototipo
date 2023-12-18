@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Compra</title>
+</head>
+<body>
+
+    <h1>Confirmación de Compra</h1>
+    
+    <form method="post" action="{{ url_for('producto_confirmacion') }}">
+        <label for="nombre">Nombre Completo:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+
+        <label for="telefono">Número telefónico:</label>
+        <input type="text" id="telefono" name="telefono" required><br>
+
+        <label for="metodo_pago">Método de Pago:</label>
+        <select id="metodo_pago" name="metodo_pago" required>
+            <option value="tarjeta">Tarjeta de Crédito</option>
+            <option value="paypal">PayPal</option>
+        </select><br>
+
+        <label for="descripcion">Breve Descripción:</label>
+        <textarea id="descripcion" name="descripcion" rows="4" required></textarea><br>
+
+        <!-- Añade un campo oculto para el producto_id si lo necesitas -->
+        <input type="hidden" name="producto_id" value="{{ producto.id }}">
+        
+        <button type="submit">Comprar</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda en Línea</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        #tienda-en-linea {
+            background-color: pink;
+            padding: 10px;
+            margin: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            width: 100%;
+        }
+
+        .producto {
+            width: 300px;
+            margin: 15px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cuadro rosa con la frase -->
+    <div id="tienda-en-linea">
+        <h1>TIENDA EN LINEA</h1>
+    </div>
+
+    <!-- Lista de productos en cuadrículas -->
+    {% for producto in productos %}
+        <div class="producto">
+            <h2>{{ producto.nombre }}</h2>
+            <img src="{{ url_for('static', filename='images/' + producto.imagen) }}" alt="{{ producto.nombre }}">
+            <p>{{ producto.descripcion }}</p>
+            <p>Precio: ${{ producto.precio }}</p>
+            <form method="post" action="{{ url_for('producto', producto_id=producto.id) }}">
+                <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                <button type="submit" name="accion" value="comprar">Comprar</button>
+            </form>
+        </div>
+    {% endfor %}
+
+</body>
+</html>
